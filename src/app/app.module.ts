@@ -7,16 +7,17 @@ import { environment } from '../environments/environment';
 // import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { SharedService } from './shared.service';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-  ],
+  ],    
   providers: [SharedService],
   bootstrap: [AppComponent],
 })

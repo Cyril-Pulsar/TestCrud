@@ -1,11 +1,18 @@
 <h1>Notes</h1>
 
 <ul *ngFor="let note of notes">
-  <li >
+  <li *ngIf="!note.isEditing">
     {{note.description}}
     <button (click)="deleteNotes(note.id)">Delete Note</button>
+    <button (click)="openEdit(note)">Edit Note</button>
+    <button (click)="logAll()">test</button>
   </li>
+  <div *ngIf="note.isEditing">
+    <input [value]="note.description" #newVal>
+    <button (click)="closeEdit(note)">Cancel</button>
+    <button (click)="updateNote(note, newVal.value)">Submit</button>
+  </div>
 </ul>
 
-<input #newNote>
-<button (click)="addNotes(newNote.value)">Add Note</button>
+<input [(ngModel)]="newNote">
+<button (click)="addNotes(newNote)">Add Note</button>
